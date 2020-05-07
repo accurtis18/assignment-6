@@ -15,6 +15,11 @@ body {
     margin-bottom: 20px;
 }
 
+.jumbotron{
+    padding-top: 20px;
+    background-color: hsl(300, 100%, 97%);
+}
+
 /* styleing footer */
 .myFooter{
     -webkit-animation: cyclecolors linear;
