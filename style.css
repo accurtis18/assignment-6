@@ -20,6 +20,10 @@ body {
     background-color: hsl(300, 100%, 97%);
 }
 
+.card{
+    margin: 10px 10px;
+}
+
 /* styleing footer */
 .myFooter{
     -webkit-animation: cyclecolors linear;
