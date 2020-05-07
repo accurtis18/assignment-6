@@ -50,11 +50,15 @@ $(document).ready(function(){
             var near_place = autocomplete.getPlace();
             $('#lat').val() = near_place.geometry.location.lat();
             $('#long').val() = near_place.geometry.location.lng();
+            $('.viewLat').html(near_place.geometry.location.lat())
+            $('.viewLong').html(near_place.geometry.location.lng());
         });    
 
 });
 
 $(document).on('change', '#searchWeather', function(){
-    $('#lat').val();
-    $('#long').val();
+    $('#lat').val() = '';
+    $('#long').val() = '';
+    $('.viewLat').html("");
+    $('.viewLong').html("");
 });
