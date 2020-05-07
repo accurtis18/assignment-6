@@ -1,6 +1,6 @@
 $(document).ready(function(){
     getCurrentForecast();
-    getFutureForecast();
+    
 
     function getCurrentForecast(){
         var key = '9a89782c5d73128c63edf8b5a4c73c28';
@@ -17,11 +17,11 @@ $(document).ready(function(){
             $('.humid').html(`Humidity: ${response.current.humidity}%`);
             $('.wind').html(`Wind: ${response.current.wind_speed} MPH`);
             $('.uv').html(`UV Index: ${response.current.uvi}`);
-        });
-    
+            getFutureForecast(response);
+        });        
     };
 
-    function getFutureForecast(){
+    function getFutureForecast(response){
         var futureDays = 0;
 
         while(futureDays < 5){
@@ -30,7 +30,9 @@ $(document).ready(function(){
                 ${moment().add((futureDays+1), 'days').format('l')}
             </div>
             <div class="card-body">
-                body
+                <img src='http://openweathermap.org/img/wn/${response.daily[futureDays].weather[0].icon}@2x.png'/>
+                Temp: ${Math.floor(response.daily[futureDays].temp.day)}&#176
+                Humidity: ${response.daily[futureDays].humidity}%
             </div>
         </div>`);
         futureDays++;
