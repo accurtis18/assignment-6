@@ -42,22 +42,26 @@ $(document).ready(function(){
         };
     }
 
-        var autocomplete;
-        autcomplete = new google.maps.places.Autocomplete($('#searchWeather'), {types: ['geocode']});
+    // var autocomplete;
+    // autocomplete = new google.maps.places.Autocomplete((document.getElementById('searchWeather')), {
+    //     types: ['geocode'],});
 
-        google.maps.event.addListener(autocomplete, 'place_changed', function(){
-            var near_place = autocomplete.getPlace();
-            $('#lat').val() = near_place.geometry.location.lat();
-            $('#long').val() = near_place.geometry.location.lng();
-            $('.viewLat').append(near_place.geometry.location.lat())
-            $('.viewLong').append(near_place.geometry.location.lng());
-        });    
+    //     google.maps.event.addListener(autocomplete, 'place_changed', function(){
+    //         var near_place = autocomplete.getPlace();
+    //         $('#lat').val() = near_place.geometry.location.lat();
+    //         $('#long').val() = near_place.geometry.location.lng();
+    //         $('.viewLat').append(near_place.geometry.location.lat())
+    //         $('.viewLong').append(near_place.geometry.location.lng());
+    //     }); 
+  
 
 });
 
-$(document).on('change', '#searchWeather', function(){
-    $('#lat').val() = '';
-    $('#long').val() = '';
-    $('.viewLat').html("");
-    $('.viewLong').html("");
-});
+ 
+
+// $(document).on('change', '#searchWeather', function(){
+//     $('#lat').val() = '';
+//     $('#long').val() = '';
+//     $('.viewLat').html("");
+//     $('.viewLong').html("");
+// });
