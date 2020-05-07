@@ -30,9 +30,9 @@ $(document).ready(function(){
                 ${moment().add((futureDays+1), 'days').format('l')}
             </div>
             <div class="card-body">
-                <img src='http://openweathermap.org/img/wn/${response.daily[futureDays].weather[0].icon}@2x.png'/>
-                Temp: ${Math.floor(response.daily[futureDays].temp.day)}&#176
-                Humidity: ${response.daily[futureDays].humidity}%
+                <p><img src='http://openweathermap.org/img/wn/${response.daily[futureDays].weather[0].icon}@2x.png'/></p>
+                <p>Temp: ${Math.floor(response.daily[futureDays].temp.day)}&#176</p>
+                <p>Humidity: ${response.daily[futureDays].humidity}%</p>
             </div>
         </div>`);
         futureDays++;
