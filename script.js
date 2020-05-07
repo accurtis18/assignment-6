@@ -27,13 +27,10 @@ $(document).ready(function(){
         while(futureDays < 5){
             $('.future').append(`<div class="card">
             <div class="card-header">
-                <h2>Day ${futureDays}</h2>
+                ${moment().add((futureDays+1), 'days').format('l')}
             </div>
             <div class="card-body">
                 body
-            </div>
-            <div class="card-footer">
-               Footer
             </div>
         </div>`);
         futureDays++;
