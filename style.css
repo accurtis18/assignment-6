@@ -16,8 +16,8 @@ body {
 }
 
 .jumbotron{
-    padding-top: 20px;
-    background-color: hsl(300, 100%, 97%);
+    padding-top: 0;
+    background-color: white;
 }
 
 .card{
