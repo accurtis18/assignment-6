@@ -42,7 +42,6 @@ $(document).ready(function(){
         };
     }
 
-
         var autocomplete;
         autcomplete = new google.maps.places.Autocomplete($('#searchWeather'), {types: ['geocode']});
 
@@ -50,8 +49,8 @@ $(document).ready(function(){
             var near_place = autocomplete.getPlace();
             $('#lat').val() = near_place.geometry.location.lat();
             $('#long').val() = near_place.geometry.location.lng();
-            $('.viewLat').html(near_place.geometry.location.lat())
-            $('.viewLong').html(near_place.geometry.location.lng());
+            $('.viewLat').append(near_place.geometry.location.lat())
+            $('.viewLong').append(near_place.geometry.location.lng());
         });    
 
 });
