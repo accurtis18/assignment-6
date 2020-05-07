@@ -15,10 +15,10 @@ $(document).ready(function(){
     
     $('#search').on('click', function(){
         city = $('#searchWeather').val();
-        cities.unshift(city);
+        cities.unshift(city.trim());
         cities.splice(5);
         localStorage.setItem("cities", JSON.stringify(cities));
-        getCurrentForecast(city);
+        getCurrentForecast(city.trim());
     });
 
     function getCurrentForecast(city){
@@ -61,7 +61,7 @@ $(document).ready(function(){
 
     function writeCityHistory(cities){
         for(city of cities){
-            $('.history').append(`<li class="list-group-item">${city}</li>`);
+            $('.history').append(`<li class="list-group-item"> <a id="${city}" href="#">${city}</a></li>`);
         }
     }
 
