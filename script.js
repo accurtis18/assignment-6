@@ -12,7 +12,10 @@ $(document).ready(function(){
             method: 'GET'
         }).then(function(response){
             console.log(response);
-            $('.city').html(`${response.timezone} <img src='http://openweathermap.org/img/wn/${response.current.weather[0].icon}@2x.png'/>`);
+            var slash = response.timezone.search("/") + 1;
+            var length = response.timezone.length - slash;
+            var city = response.timezone.substr(parseInt(slash), parseInt(length));
+            $('.city').html(`${city} <img src='http://openweathermap.org/img/wn/${response.current.weather[0].icon}@2x.png'/>`);
             $('.temp').html(`Temp: ${Math.floor(response.current.temp)}&#176 and ${response.current.weather[0].description}`);
             $('.humid').html(`Humidity: ${response.current.humidity}%`);
             $('.wind').html(`Wind: ${response.current.wind_speed} MPH`);
