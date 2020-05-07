@@ -24,6 +24,18 @@ body {
     margin: 10px 10px;
 }
 
+.card-header{
+    background-color: hsl(300, 100%, 33%);
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+.card-body{
+    padding-top: 0;
+    padding-bottom: 5px;
+}
+
 /* styleing footer */
 .myFooter{
     -webkit-animation: cyclecolors linear;
