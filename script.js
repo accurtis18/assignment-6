@@ -40,8 +40,21 @@ $(document).ready(function(){
         </div>`);
         futureDays++;
         };
-
     }
+
+
+        var autocomplete;
+        autcomplete = new google.maps.places.Autocomplete($('#searchWeather'), {types: ['geocode']});
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+            var near_place = autocomplete.getPlace();
+            $('#lat').val() = near_place.geometry.location.lat();
+            $('#long').val() = near_place.geometry.location.lng();
+        });    
 
 });
 
+$(document).on('change', '#searchWeather', function(){
+    $('#lat').val();
+    $('#long').val();
+});

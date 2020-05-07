@@ -27,6 +27,8 @@
                 <h6>Search for a city:</h6>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="(ex. Chicago, US)" aria-label="City weather search" aria-describedby="button-addon2" id="searchWeather">
+                    <input type="hidden" id="lat"/>
+                    <input type="hidden" id="long"/>
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="search">Search</button>
                     </div>
@@ -70,6 +72,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG08G_xYexjlikb7EEMTp6x7NlIBAdX6Q&callback=initMap"
+    async defer></script>
     <script src="./script.js"></script>
 </body>
 </html>
