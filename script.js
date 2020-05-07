@@ -5,14 +5,19 @@ $(document).ready(function(){
     if(localCities !== null && localCities !== ""){
         cities = JSON.parse(localCities);
         city = cities[0];
+        console.log(city);
+        getCurrentForecast(city);
+        writeCityHistory(cities);
     } else{
         city = 'Chicago';
+        getCurrentForecast(city);
     }
-
-    getCurrentForecast(city);
     
     $('#search').on('click', function(){
         city = $('#searchWeather').val();
+        cities.unshift(city);
+        cities.splice(5);
+        localStorage.setItem("cities", JSON.stringify(cities));
         getCurrentForecast(city);
     });
 
@@ -52,6 +57,12 @@ $(document).ready(function(){
         futureDays++;
         listItem += 8;
         };
+    }
+
+    function writeCityHistory(cities){
+        for(city of cities){
+            $('.history').append(`<li class="list-group-item">${city}</li>`);
+        }
     }
 
     // var autocomplete;
