@@ -24,6 +24,10 @@ body {
     background-color: white;
 }
 
+.card{
+    margin: 10px 10px;
+}
+
 .card-header{
     background-color: hsl(300, 100%, 33%);
     color: white;

@@ -57,7 +57,7 @@ $(document).ready(function(){
         $('.future').html('');
 
         while(futureDays < 5){
-            $('.future').append(`<div class="card mx-auto">
+            $('.future').append(`<div class="card">
             <div class="card-header">
                 ${moment().add((futureDays+1), 'days').format('l')}
             </div>
