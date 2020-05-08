@@ -9,10 +9,14 @@ $(document).ready(function(){
         getCurrentForecast(city);
         writeCityHistory(cities);
     } else{
-        city = 'Chicago';
-        getCurrentForecast(city);
+            $.ajax({
+                url: 'http://free.ipwhois.io/json/',
+                method: 'GET'
+            }).then(function(response){
+              console.log(response);
+              getCurrentForecast(response.city)
+            });
     }
-    getGeolocation();
     
     $('#search').on('click', function(){
         city = $('#searchWeather').val();
@@ -42,15 +46,6 @@ $(document).ready(function(){
             // $('.uv').html(`UV Index: ${response.current.uvi}`);
             getFutureForecast(response);
         });        
-    };
-
-    function getGeolocation(){
-        $.ajax({
-            url: 'http://free.ipwhois.io/json/',
-            method: 'GET'
-        }).then(function(response){
-          console.log(response);
-        });
     };
 
     function getFutureForecast(response){
