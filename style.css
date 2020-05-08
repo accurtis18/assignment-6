@@ -24,6 +24,25 @@ body {
     background-color: white;
 }
 
+.uvLabel{
+    padding: 5px;
+    border-radius: 5px;    
+}
+
+.safe{
+    background-color: hsl(130, 100%, 33%)d;
+    color: white;
+}
+
+.moderate{
+    background-color: #f89438;
+}
+
+.danger{
+    background-color: #e65453;
+    color: white;
+}
+
 .card{
     margin: 10px auto;
 }

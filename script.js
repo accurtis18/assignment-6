@@ -18,7 +18,6 @@ $(document).ready(function(){
     }
 
     function search(city){
-        city = $('#searchWeather').val();
         cities.unshift(city.trim());
         cities.splice(5);
         localStorage.setItem("cities", JSON.stringify(cities));
@@ -41,12 +40,10 @@ $(document).ready(function(){
     });
 
     $('.history').on("click", '#cityHis', function(){
-            city = $(this).closest('.his').val();
-            console.log(city);
+            city = $(this).closest('#cityHis').text();
             search(city);
     });
 
- 
 
     //error response for incorrect cities/make sure it doesn't push or delete if it already has
     //add celsius toggle
@@ -80,6 +77,7 @@ $(document).ready(function(){
         var futureDays = 0;
         var lat = response.coord.lat;
         var lon = response.coord.lon;
+        var uvClass = ""
         $('.future').html('');
 
         $.ajax({
@@ -100,7 +98,15 @@ $(document).ready(function(){
             </div>`);
             futureDays++;
             };
-            $('.uv').html(`UV Index: ${response.current.uvi}`);
+            if(response.current.uvi < 3){
+                uvClass = "safe"
+            } else if(response.current.uvi < 6){
+                uvClass = "moderate"
+            } else{
+                uvClass = "danger"
+            }
+
+            $('.uv').html(`UV Index: <label class="uvLabel ${uvClass}">${response.current.uvi}</lable>`);
         });
 
     }
