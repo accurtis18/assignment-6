@@ -20,6 +20,8 @@ $(document).ready(function(){
         cities.splice(5);
         localStorage.setItem("cities", JSON.stringify(cities));
         getCurrentForecast(city.trim());
+        $('#searchWeather').val("");
+        writeCityHistory(cities);
     });
 
     //error response for incorrect cities/make sure it doesn't push or delete if it already has
@@ -73,6 +75,7 @@ $(document).ready(function(){
     }
 
     function writeCityHistory(cities){
+        $('.history').html("");
         for(city of cities){
             $('.history').append(`<li class="list-group-item"> <a id="${city}" href="#">${city}</a></li>`);
         }
