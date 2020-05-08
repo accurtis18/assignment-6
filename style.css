@@ -38,6 +38,13 @@ body {
 .card-body{
     padding-top: 0;
     padding-bottom: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.futureImg{
+    height: 50px;
+    width: 50px;
 }
 
 /* styleing footer */

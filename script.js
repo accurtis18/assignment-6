@@ -12,6 +12,7 @@ $(document).ready(function(){
         city = 'Chicago';
         getCurrentForecast(city);
     }
+    getGeolocation();
     
     $('#search').on('click', function(){
         city = $('#searchWeather').val();
@@ -21,6 +22,9 @@ $(document).ready(function(){
         getCurrentForecast(city.trim());
     });
 
+    //error response for incorrect cities/make sure it doesn't push or delete if it already has
+    //add celsius toggle
+    //need second call to collect todays UV index
     function getCurrentForecast(city){
         var key = '9a89782c5d73128c63edf8b5a4c73c28';
     
@@ -38,6 +42,15 @@ $(document).ready(function(){
         });        
     };
 
+    function getGeolocation(){
+        $.ajax({
+            url: 'http://free.ipwhois.io/json/',
+            method: 'GET'
+        }).then(function(response){
+          console.log(response);
+        });
+    };
+
     function getFutureForecast(response){
         var futureDays = 0;
         var listItem = 5;
@@ -49,7 +62,7 @@ $(document).ready(function(){
                 ${moment().add((futureDays+1), 'days').format('l')}
             </div>
             <div class="card-body">
-                <p><img src='http://openweathermap.org/img/wn/${response.list[listItem].weather[0].icon}@2x.png'/></p>
+                <p><img class="futureImg" src='http://openweathermap.org/img/wn/${response.list[listItem].weather[0].icon}@2x.png'/></p>
                 <p>Temp: ${Math.floor(response.list[listItem].main.temp)}&#176</p>
                 <p>Humidity: ${response.list[listItem].main.humidity}%</p>
             </div>
