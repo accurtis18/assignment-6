@@ -11,7 +11,7 @@ $(document).ready(function(){
         writeCityHistory(cities);
     } else{
             $.ajax({
-                url: 'http://free.ipwhois.io/json/',
+                url: 'https://free.ipwhois.io/json/',
                 method: 'GET'
             }).then(function(response){
                 city = response.city;
