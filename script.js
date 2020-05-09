@@ -22,6 +22,7 @@ $(document).ready(function(){
                 // url: 'https://free.ipwhois.io/json/',
                 // method: 'GET'
             }).then(function(response){
+                console.log(response);
                 city = response.city;
                 cities.unshift(city.trim());
                 localStorage.setItem("cities", JSON.stringify(cities));
