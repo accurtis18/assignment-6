@@ -82,7 +82,6 @@ $(document).ready(function(){
             url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key +'&units=' + unit,
             method: 'GET'
         }).then(function(response){
-            console.log(response);
             if(full){
                 $('.city').html(`${response.name} <img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png'/>`);
                 $('.temp').html(`Temp: ${Math.floor(response.main.temp)}&#176 and ${response.weather[0].description}`);
@@ -112,7 +111,6 @@ $(document).ready(function(){
             url: 'https://api.openweathermap.org/data/2.5/onecall?lat=' +lat + '&lon=' + lon + '&exclude=hourly&appid=' + key +'&units=' + unit,
             method: 'GET'
         }).then(function(response){
-            console.log(response);
             while(futureDays < 5){
                 $('.future').append(`<div class="card">
                 <div class="card-header">
