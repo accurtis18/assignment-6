@@ -11,8 +11,16 @@ $(document).ready(function(){
         writeCityHistory(cities);
     } else{
             $.ajax({
-                url: 'https://free.ipwhois.io/json/',
-                method: 'GET'
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/",
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-host": "ip-geolocation-ipwhois-io.p.rapidapi.com",
+                        "x-rapidapi-key": "4160692450msh57c7f939866117fp13f0ccjsn2faf3ca7bcb3"
+                    }
+                // url: 'https://free.ipwhois.io/json/',
+                // method: 'GET'
             }).then(function(response){
                 city = response.city;
                 cities.unshift(city.trim());
