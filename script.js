@@ -3,6 +3,7 @@ $(document).ready(function(){
     var cities = [];
     var city = '';
     var fullCast = true;
+    var unit = "imperial";
     if(localCities !== null && localCities !== ""){
         cities = JSON.parse(localCities);
         city = cities[0];
@@ -13,7 +14,10 @@ $(document).ready(function(){
                 url: 'http://free.ipwhois.io/json/',
                 method: 'GET'
             }).then(function(response){
-              getCurrentForecast(response.city, fullCast)
+                city = response.city;
+                cities.unshift(city.trim());
+                localStorage.setItem("cities", JSON.stringify(cities));
+                getCurrentForecast(city, fullCast);
             });
     }
 
@@ -44,6 +48,21 @@ $(document).ready(function(){
             search(city);
     });
 
+    $('#switchDegree').on('click',function(){
+        if(unit === "imperial"){
+            unit = "metric";
+            $('.slider').html("C&#176");
+            $('.slider').css({textAlign :'left',
+                                paddingLeft :'4px'});
+        } else{
+            unit = "imperial";
+            $('.slider').html("F&#176");
+            $('.slider').css('text-align','right');
+        }
+        city = cities[0];
+        getCurrentForecast(city, fullCast);
+    });
+
 
     //error response for incorrect cities/make sure it doesn't push or delete if it already has
     //add celsius toggle
@@ -51,7 +70,7 @@ $(document).ready(function(){
         var key = '9a89782c5d73128c63edf8b5a4c73c28';
     
         $.ajax({
-            url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key +'&units=imperial',
+            url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key +'&units=' + unit,
             method: 'GET'
         }).then(function(response){
             console.log(response);
@@ -81,7 +100,7 @@ $(document).ready(function(){
         $('.future').html('');
 
         $.ajax({
-            url: 'https://api.openweathermap.org/data/2.5/onecall?lat=' +lat + '&lon=' + lon + '&exclude=hourly&appid=' + key +'&units=imperial',
+            url: 'https://api.openweathermap.org/data/2.5/onecall?lat=' +lat + '&lon=' + lon + '&exclude=hourly&appid=' + key +'&units=' + unit,
             method: 'GET'
         }).then(function(response){
             console.log(response);
