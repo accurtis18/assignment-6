@@ -1,9 +1,12 @@
 $(document).ready(function(){
+    //initializing values to be used including local storage values and unit measurement value
     var localCities = localStorage.getItem("cities");
     var cities = [];
     var city = '';
     var fullCast = true;
     var unit = "imperial";
+
+    //idnetifing if there are is any search history, if not, identify nearby location to present weather
     if(localCities !== null && localCities !== ""){
         cities = JSON.parse(localCities);
         city = cities[0];
@@ -19,10 +22,7 @@ $(document).ready(function(){
                         "x-rapidapi-host": "ip-geolocation-ipwhois-io.p.rapidapi.com",
                         "x-rapidapi-key": "4160692450msh57c7f939866117fp13f0ccjsn2faf3ca7bcb3"
                     }
-                // url: 'https://free.ipwhois.io/json/',
-                // method: 'GET'
             }).then(function(response){
-                console.log(response);
                 city = response.city;
                 cities.unshift(city.trim());
                 localStorage.setItem("cities", JSON.stringify(cities));
@@ -30,6 +30,7 @@ $(document).ready(function(){
             });
     }
 
+    //function to add a city search for to search history and call weather forecast for the city
     function search(city){
         cities.unshift(city.trim());
         cities.splice(5);
@@ -39,6 +40,7 @@ $(document).ready(function(){
         writeCityHistory(cities);
     }
     
+    //searches on enter
     $('#searchWeather').keypress(function (e) {
         if (e.which == 13) {
             city = $('#searchWeather').val();
@@ -47,16 +49,19 @@ $(document).ready(function(){
         }
       });
 
+      //searches on click
     $('#search').on('click', function(){
         city = $('#searchWeather').val();
         search(city);
     });
 
+    //allows user to click on a previous search to show current and future weather
     $('.history').on("click", '#cityHis', function(){
             city = $(this).closest('#cityHis').text();
             search(city);
     });
 
+    //function to change the weather on the page if the switch is flipped from C to F
     $('#switchDegree').on('click',function(){
         if(unit === "imperial"){
             unit = "metric";
@@ -73,8 +78,7 @@ $(document).ready(function(){
     });
 
 
-    //error response for incorrect cities/make sure it doesn't push or delete if it already has
-    //add celsius toggle
+    //function to grab current weather, catches if there is an error in the response, calls future weather
     function getCurrentForecast(city, full){
         var key = '9a89782c5d73128c63edf8b5a4c73c28';
     
@@ -99,6 +103,9 @@ $(document).ready(function(){
         });        
     };
 
+    //functional is called at end of current weather function
+    //calls the future forecast API for future five days, using lat lon of previous api call
+    //gather the UV index for the current day as it's only available in this api
     function getFutureForecast(response){
         var key = '9a89782c5d73128c63edf8b5a4c73c28';
         var futureDays = 0;
@@ -137,33 +144,13 @@ $(document).ready(function(){
 
     }
 
+    //write history to page on load, is called when a new search is performed to update.
     function writeCityHistory(cities){
         $('.history').html("");
         for(city of cities){
             $('.history').append(`<li class="list-group-item"> <a class="his" id="cityHis" href="#">${city}</a></li>`);
         }
     }
-
-    // var autocomplete;
-    // autocomplete = new google.maps.places.Autocomplete((document.getElementById('searchWeather')), {
-    //     types: ['geocode'],});
-
-    //     google.maps.event.addListener(autocomplete, 'place_changed', function(){
-    //         var near_place = autocomplete.getPlace();
-    //         $('#lat').val() = near_place.geometry.location.lat();
-    //         $('#long').val() = near_place.geometry.location.lng();
-    //         $('.viewLat').append(near_place.geometry.location.lat())
-    //         $('.viewLong').append(near_place.geometry.location.lng());
-    //     }); 
-  
-
 });
 
  
-
-// $(document).on('change', '#searchWeather', function(){
-//     $('#lat').val() = '';
-//     $('#long').val() = '';
-//     $('.viewLat').html("");
-//     $('.viewLong').html("");
-// });

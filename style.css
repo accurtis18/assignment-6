@@ -8,19 +8,21 @@ body {
   padding-bottom: 80px;
 }
 
-/* page title */
+/* page title row */
 .title{
     display: flex;
     justify-content: center;
     position: relative;
 }
 
+/* Page title formatting */
 .pageHeader{
     margin-top: 30px;
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Unit measure switch formatting is next 9 formatting sections*/
 #degreeText{
     position: absolute;
     right: 10px;
@@ -92,15 +94,18 @@ body {
       text-align: right;
   }
 
+/* fomratting for history of searches */
 .history{
     width: 100%;
 }
 
+/* Jumbotron formating for current and future weather */
 .jumbotron{
     padding-top: 0;
     background-color: white;
 }
 
+/* Next four sections format UV Index with conditional formatting */
 .uvLabel{
     padding: 5px;
     border-radius: 5px;
@@ -119,6 +124,7 @@ body {
     background-color: #e65453;
 }
 
+/* Next four sections format the future weather cards*/
 .card{
     margin: 10px auto;
 }
